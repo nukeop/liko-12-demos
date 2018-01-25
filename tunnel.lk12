@@ -1,0 +1,18 @@
+LK12;OSData;DiskOS;DiskGame;V2;192x128;C:none;CLvl:0;
+___luacode___
+local W, H = screenSize()
+t=0
+function _draw(dt)
+   clear()
+   for i = -70, 15 do
+      circle(
+	 (W/2)+math.cos(t*0.5)*(i^2)*0.03,
+	 (H/2)+math.sin(t*0.7)*(i^2)*0.01,
+	 (i+70),
+	 true,
+	 ((i+t*100)%8+8)%15
+      )
+   end
+   t = t - 0.004
+end
+___autoEventLoop
