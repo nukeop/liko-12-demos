@@ -1,0 +1,19 @@
+LK12;OSData;DiskOS;DiskGame;V2;192x128;C:none;CLvl:0;
+___luacode___
+local W, H = screenSize()
+
+n = 28
+w = W
+t = 0
+::s::
+clear()
+t = t-.5
+for i=0, n do
+   z = i * n + t%n
+   y = w*n/z + 12
+   line(0, y, w, y, 12)
+   v = i + t%n/n - n/2
+   line(v * 9 + 64, 20, v*60 + 64, w, 12)
+end
+flip()
+goto s
