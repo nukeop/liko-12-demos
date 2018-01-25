@@ -1,0 +1,38 @@
+LK12;OSData;DiskOS;DiskGame;V2;192x128;C:none;CLvl:0;
+___luacode___
+
+local W, H = screenSize()
+
+local screen
+local timer = 0
+local ty = 112
+local tx = 256
+
+function _init()
+   screen = screenshot(x,y,w,h)
+end
+
+function _draw(dt)
+   clear()
+   timer = timer + dt
+   
+   ty = ty + math.sin(timer*5)
+   tx = ty - 2
+   if tx <= -2048 then
+      tx = 128
+   end
+
+   for x=0, W do
+      for y=0, H do
+	 local c1 = math.sin(x/32-timer)*3.9+4
+	 local c2 = math.sin(y/32-timer)*3.9+4
+	 local c3 = math.sin(math.sqrt(x*x+y*y)/16+timer)*3.9+4
+	 
+	 local cfinal=(c1+c2+c3)/3
+	 
+	 point(x, y, math.floor(cfinal+8))
+      end
+   end
+end
+
+___autoEventLoop
