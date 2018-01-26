@@ -1,0 +1,24 @@
+LK12;OSData;DiskOS;DiskGame;V2;192x128;C:none;CLvl:0;
+___luacode___
+local W, H = screenSize()
+
+g=0
+::a::
+a = g/64
+r = 160
+c = 0
+while r>2 do
+   circle(
+      W/2 - 1 + math.cos(a) * r * 0.5,
+      H/2 - 1 + math.sin(a) * r * 0.5,
+      r,
+      false,
+      c%3+13
+   )
+   c = c+1
+   a = a + math.cos(g/8192)
+   r = r * .84
+end
+g = g+1
+flip()
+goto a
